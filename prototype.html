@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GitHub Status Manager</title>
+  <style>
+      body {
+  font-family: system-ui, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 650px;
+  margin: auto;
+}
+
+h1, h2 {
+  color: #58a6ff;
+}
+
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.card {
+  background: #161b22;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #238636;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #2ea043;
+}
+
+select, input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #30363d;
+  background: #0d1117;
+  color: #c9d1d9;
+  font-size: 14px;
+  outline: none;
+}
+
+select:focus, input:focus {
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 2px rgba(88,166,255,0.3);
+}
+
+.status {
+  font-size: 0.9em;
+  color: #8b949e;
+  margin-top: 5px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #8b949e;
+  font-size: 0.85em;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🐙 GitHub Status Manager</h1>
+
+    <section class="card">
+      <h2>🔑 Setup Your Token</h2>
+      <p>
+        To let this extension update your status, you need a 
+        <strong>Personal Access Token (PAT)</strong> with <code>user:write</code> scope.
+      </p>
+      <ol>
+        <li><a href="https://github.com/settings/tokens" target="_blank">Open GitHub Token Settings</a></li>
+        <li>Click <strong>Generate new token</strong> (classic or fine-grained).</li>
+        <li>Enable <code>user:write</code> permissions.</li>
+        <li>Copy and paste the token below:</li>
+      </ol>
+
+      <input type="password" id="tokenInput" placeholder="Paste your GitHub token here">
+      <button id="saveToken">💾 Save Token</button>
+      <p id="tokenStatus" class="status"></p>
+    </section>
+
+    <section class="card">
+      <h2>⚙️ Manual Override</h2>
+      <p>Override automatic status updates:</p>
+      <select id="statusOverride">
+        <option value="">Auto (default)</option>
+        <option value="online">🟢 Online</option>
+        <option value="idle">💤 Idle</option>
+        <option value="offline">⚫ Offline</option>
+        <option value="busy">🔕 Busy</option>
+      </select>
+      <button id="applyOverride">✅ Apply Override</button>
+      <p id="overrideStatus" class="status"></p>
+    </section>
+
+    <footer>
+      <p>🌙 Dark mode enabled | Made with ❤️</p>
+    </footer>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
